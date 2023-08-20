@@ -1,0 +1,35 @@
+
+
+<nav class="navbar bg-dark " data-bs-theme="dark">
+    <div class="container-fluid d-flex justify-content-between">
+        <div class="nav-elements">
+          <a class="navbar-brand" href="{{ url_for('home') }}">
+            <!-- <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
+            UPFace
+          </a>
+        </div>
+    
+        <div class="nav-elements">
+            <a class="" href="{{ url_for('database') }}">DataBase</a>
+            <a class="" aria-current="page" href="">Toma de datos</a>
+            <a class="" href="#">Entrenamiento</a>
+            <a class="" href="#">Aplicación</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav-elements a{
+        color: white;
+        text-decoration: none;
+    }
+    .nav-elements>*::after {
+        content: "|";
+        padding: 0 10px;
+    }
+    .nav-elements>*:last-child::after {
+        content: "";
+        padding: 0;
+    }
+
+</style>

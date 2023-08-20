@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h2 class="my-4" >DataBase : {{name}}</h2>
+    <div>
+        <button class="btn btn-primary">Agregar</button>
+        <button onclick="sendData()" class="btn btn-danger" id="btn-eliminar">Eliminar</button>
+    </div>
+</div>
+<div class="paipper grid">
+    {% for ruta in dataImage %}
+        <div class="d-flex justify-content-center align-items-center card" style="cursor:pointer">
+            <img onclick="addElement(this)" class="card-img-top" src="{{ url_for('static', filename=ruta) }}" alt="{{ruta}}">
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script>
+    let selectedImage = []
+
+    function addElement( el ) {
+        //Busca si el elemento ya esta en el array si esta lo elimina de lo contrario lo agrega
+        el.classList.toggle( 'selected' )
+        if( selectedImage.includes( el.alt ) ) {
+            selectedImage = selectedImage.filter( item => item != el.alt )
+        } else {
+            selectedImage.push( el.alt )
+        }
+    }
+
+    function sendData() {
+        fetch("{{ url_for('databaseName', name=name) }}", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "form=" + encodeURIComponent(selectedImage),
+        })
+        .then( response => {
+            if( response.ok ) {
+                return location.reload()
+            }
+            throw new Error( "No se han podido eliminar los registros" )
+        })
+        .catch( error => {
+            alert( error )
+        })
+    }
+
+</script>
+{% endblock %}
+
+
+{% block styles %}
+{{super()}}
+<style>
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+}
+
+/*la image con clase slected se va colocar en colores grises*/
+.selected {
+    filter: grayscale(1);
+    transition: .6s;
+}
+
+</style>
+{% endblock %}

@@ -4,7 +4,7 @@ import numpy as np
 from time import time
 import imutils
 
-dataRuta=r'.\Data'
+dataRuta=r'.\static\Data'
 listaData = os.listdir(dataRuta)
 entrenamientoEigenFaceRecognizer = cv.face.EigenFaceRecognizer_create()
 entrenamientoEigenFaceRecognizer.read('entrenamientoEigenFaceRecognizer.xml')
@@ -14,11 +14,11 @@ camara = cv.VideoCapture(0)
 while True:
     respuesta, captura = camara.read()
     if respuesta == False:break
-    captura = imutils.resize(captura,width=640)
+    captura = imutils.resize(captura,width=468)
 
-    camara.set(cv.CAP_PROP_BRIGHTNESS, 0)
-    camara.set(cv.CAP_PROP_CONTRAST, 45)
-    camara.set(cv.CAP_PROP_SATURATION, 70)
+    # camara.set(cv.CAP_PROP_BRIGHTNESS, 0)
+    # camara.set(cv.CAP_PROP_CONTRAST, 45)
+    # camara.set(cv.CAP_PROP_SATURATION, 70)
     captura1 = captura.copy()    
     grises = cv.cvtColor(captura,cv.COLOR_BGR2GRAY)
     idcaptura = grises.copy()
@@ -38,7 +38,7 @@ while True:
 
 
     cv.imshow("RECONOCIMIENTO FINAL",captura1)    
-    cv.imshow("Resultados",captura)    
+    # cv.imshow("Resultados",captura)    
     if(cv.waitKey(1)==ord('s')):break   
 camara.release()
 cv.destroyAllWindows()

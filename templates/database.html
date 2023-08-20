@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <h2 class="my-4">DataBase</h2>
+    <div class="mb-5" style="box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+        <ul class="list-group">
+            {% for key in dataImage %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <div class="rounted-circle img-container-persona">
+                                    <img src="{{ url_for( 'static', filename=dataImage[key][0] ) }}" >
+                                </div>
+                                <div>
+                                    {{key}}
+                                    <br>
+                                    Muestras: {{ dataImage[key]|length }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <a class="btn btn-outline-primary btn-sm" 
+                            href="{{ url_for('databaseName', name=key) }}">Ver muestras</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+          </ul>
+
+        <!-- {% for key in dataImage %}
+            <div class="imgIntro">
+                <img src="{{ url_for( 'static', filename=dataImage[key][0] ) }}" >
+            </div>
+            <div class="hidden">
+                {% for ruta in dataImage[key] %}
+                    <img src="{{ url_for( 'static', filename=ruta ) }}" >
+                {% endfor %}
+            </div>
+        {% endfor %} -->
+    </div>
+
+{% endblock %}
+
+
+{% block styles %}
+{{super()}}
+<style>
+.img-container-persona{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.img-container-persona img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
+{% endblock %}
+
+
+
+
