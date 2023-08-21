@@ -1,24 +1,27 @@
 
-
-<nav class="navbar bg-dark " data-bs-theme="dark">
-    <div class="container-fluid d-flex justify-content-between">
-        <div class="nav-elements">
-          <a class="navbar-brand" href="{{ url_for('home') }}">
-            <!-- <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
-            UPFace
-          </a>
-        </div>
-    
-        <div class="nav-elements">
-            <a class="" href="{{ url_for('database') }}">DataBase</a>
-            <a class="" aria-current="page" href="">Toma de datos</a>
-            <a class="" href="#">Entrenamiento</a>
-            <a class="" href="#">Aplicación</a>
-        </div>
+<div class="container-fluid d-flex justify-content-between align-items-center bg-dark nb">
+    <div class="nav-elements">
+        <a class="logo" href="{{ url_for('home') }}">
+        UPFace
+        </a>
     </div>
-</nav>
+
+    <div class="nav-elements">
+        <a class="" href="{{ url_for('database') }}">DataBase</a>
+        <a class="" href="{{ url_for('stream') }}">Toma de datos</a>
+        <a class="" href="#">Entrenamiento</a>
+        <a class="" href="#">Aplicación</a>
+    </div>
+</div>
 
 <style>
+    .logo {
+        font-size: 1.4rem;
+    }
+    .nb {
+        height: 8vh;
+        font-size: 1.1rem;
+    }
     .nav-elements a{
         color: white;
         text-decoration: none;

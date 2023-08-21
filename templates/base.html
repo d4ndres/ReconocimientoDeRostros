@@ -15,21 +15,21 @@
             <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         {% endblock %}
 
-        {% block scripts %}
-
-        {{ bootstrap.load_js() }}
-        
-        {% endblock %}
     </head>
     <body>
         <header>
             {% include 'navbar.html' %}
         </header>
         <!-- Your page content -->
-        <main class="container">
+        <main >
             {% block content %}{% endblock %}
         </main>
-
-
+        
+        
+        {% block scripts %}
+    
+        {{ bootstrap.load_js() }}
+        
+        {% endblock %}
     </body>
 </html>

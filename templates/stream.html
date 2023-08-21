@@ -1,0 +1,82 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="daddy-stream">
+    <div class="child aside">
+        <div class="container flexible">
+            
+            <form action="{{ url_for('stream_tomaDeDatos') }}" method="POST" class="my-2">
+                <div class="mb-2">
+                    <label class="form-label mb-0 text-white">{{ form.name.label }}</label>
+                    {{ form.name(class="form-control") }}
+                </div>
+                <div>
+                    <label class="form-label mb-0 text-white">{{ form.times.label }}</label>
+                    {{ form.times(class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-primary my-3">Iniciar</button>
+            </form>
+            <div class="container text-white border border-1 rounded-4 p-2">
+                <div>
+                    <h4>Ayuda</h4>
+                    <p class="text-justify ">En esta sección, se llevará a cabo la recopilación de muestras que se destinarán a la construcción de la base de datos. En el formulario, encontrarás campos específicos para asignar un nombre al conjunto de datos que se va a recopilar, además de ingresar la cantidad de muestras que deseas agregar a dicho conjunto. Te sugerimos mantener una distribución similar de elementos entre los diversos conjuntos de datos para lograr un entrenamiento óptimo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="child stream">    
+        <img src="{{ url_for('stream_tomaDeDatosVideo', name=name, times=times ) }}" alt="">      
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<style>
+    .flexible{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+    .daddy-stream {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 92vh;
+        margin: 0;
+    }
+
+    .child {
+        transition: .6s;
+        height: 100%;
+    }
+
+    .aside {
+        width: 25%;
+        background-color: #24272b;
+    }
+
+    .stream {
+        width: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stream img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .activate .aside{
+        width: 0;
+    }
+    .activate .stream{
+        width: 100%;
+    }
+</style>
+{% endblock %}
