@@ -65,5 +65,25 @@ def stream_tomaDeDatosVideo( name, times ):
     return Response( encodingTomaDeDatos(name, times), mimetype='multipart/x-mixed-replace; boundary=frame' )
 
 
+@app.route('/entrenamiento', methods=['GET','POST'])
+def entrenamiento():
+
+    if request.method == 'POST':
+        entrenamientoNN()
+        return redirect(url_for('home'))
+
+    return render_template('entrenamiento.html')
+
+
+@app.route('/reconocimiento')
+def reconocimiento():
+    return render_template('reconocimiento.html')
+
+
+@app.route('/stream/reconocimiento')
+def stream_reconocimiento():
+    return Response( encodingReconocimiento(), mimetype='multipart/x-mixed-replace; boundary=frame' )
+
+
 if __name__ == '__main__':
     app.run(debug=True)

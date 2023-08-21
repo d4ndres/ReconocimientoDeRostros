@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="stream">
+    <img src="{{ url_for('stream_reconocimiento' ) }}" alt="">      
+</div>
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<style>
+    .stream {
+        margin: 0;
+        height: 92vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .stream img {
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    .stream:before {
+        content: 'Cargando...';
+        color: #24272b;
+        position: absolute;
+        z-index: 0;
+    }
+
+    .stream img {
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
